@@ -1,3 +1,4 @@
+#q1
 class Team < Player
     @@members == 0
     def initialize()
