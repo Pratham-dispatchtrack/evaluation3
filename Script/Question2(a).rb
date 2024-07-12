@@ -3,7 +3,7 @@ def custom_map(array,&block)
 end
 
 
-even = lambda {|x| x % 2 ==0 }
+even = lambda {|x| x +2 }
 puts custom_map([1,2,3,4,5,1,1], &even)  
 
 
