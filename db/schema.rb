@@ -10,11 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_12_043904) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_12_081554) do
   create_table "checks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "matches", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.date "date"
+    t.string "location"
+    t.integer "score_team1"
+    t.integer "score_team2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "age"
+    t.string "position"
+    t.bigint "teams_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teams_id"], name: "index_players_on_teams_id"
+  end
+
+  create_table "teams", primary_key: "ID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "country", null: false
+    t.integer "founded"
+    t.index ["name"], name: "name", unique: true
   end
 
 end
