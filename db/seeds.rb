@@ -15,6 +15,7 @@ class Cricket
   def process_data
     @data = CSV.read(@path, headers: true).map(&:to_h).map do |row|
       {
+        'date' => row['date'],
         'location' => row['location'],
         'team1_id' => row['team1_id'].to_i,
         'team2_id' => row['team2_id'].to_i,
@@ -27,7 +28,7 @@ class Cricket
   def push_data
     @data = process_data
     @data.each do |player|
-      Player.create(location: player['location'], team1_id: player['team1_id'], team2_id: player['team2_id'], score_team1: player['score_team1'], score_team2: player['score_team1'])
+      Player.create(date: player['date'],location: player['location'], team1_id: player['team1_id'], team2_id: player['team2_id'], score_team1: player['score_team1'], score_team2: player['score_team1'])
     end
   end
 end
